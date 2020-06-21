@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App;
 
 use App\Http\Requests\CreateUserRequest;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 
 class pagesController extends Controller
@@ -33,7 +34,7 @@ class pagesController extends Controller
             try { 
                 $nuevoUsuario=new App\User;
                 $nuevoUsuario->username = $request->usuario;
-                $nuevoUsuario->password = $request->contrasenia;
+                $nuevoUsuario->password = Hash::make($request->contrasenia);
                 $nuevoUsuario->nombre = $request->nombre;
                 $nuevoUsuario->email = $request->email;
                 $nuevoUsuario->apellido = $request->apellido;

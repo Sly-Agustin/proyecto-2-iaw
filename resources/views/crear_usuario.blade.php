@@ -68,25 +68,7 @@
                     <label for="inputPhone">Teléfono</label>
                     <input type="number" name="telefono" class="form-control" id="inputPhone" placeholder="Ej: 0291 - 4567891" value="{{ old('telefono') }}">
                 </div>
-            </div>
-            <!--<div class="form-row">
-                <div class="col-md-6 col-sm-6 col-xs-12 ">
-                    <input type="text" placeholder="Nombre de usuario" class="form-control mb-2">
-                    <input type="text" placeholder="Nombre" class="form-control mb-2">
-                    <input type="text" placeholder="Dirección" class="form-control mb-2">
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12 ">
-                    <input type="text" placeholder="Contraseña" class="form-control mb-2">
-                    <input type="text" placeholder="Apellido" class="form-control mb-2">
-                    <input type="text" placeholder="Teléfono" class="form-control mb-2">
-                </div>
-            </div>-->
-            <!--<form action="">
-                <input type="text" placeholder="Nombre de usuario" class="form-control mb-2">
-                <input type="text" placeholder="Constraseña" class="form-control mb-2">
-                <input type="text" placeholder="Nombre" class="form-control mb-2">
-                <input type="text" placeholder="Apellido" class="form-control mb-2">
-            </form>-->      
+            </div>    
             <div class="text-center">
                 <button type="submit" id="crearCuentaButton" class="btn btn-primary marginButton btn-lg active">Crear cuenta</button>
             </div>

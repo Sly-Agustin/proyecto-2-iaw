@@ -30,3 +30,7 @@ Route::post('crear_usuario/result', 'pagesController@crear_usuario_result')->nam
 Route::get('productos', 'pagesController@productos')->name('productos');
 
 Route::get('productos/{nombre}', 'pagesController@detallado')->name('productos.detallado');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
