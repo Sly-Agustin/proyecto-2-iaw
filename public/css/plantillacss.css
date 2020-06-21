@@ -1,0 +1,42 @@
+.redFont{
+    color: #f61515;
+}
+.fontSize18{
+    font-size: 18px;
+}
+.bgBody{
+    background: linear-gradient(#FFFFFF, #9B9B9B);
+}
+.bgLightBlueLight{
+    background-color: #e3f2fd !important;
+}
+.bgLightBlueLight:hover{
+    color: #e3f2fd;
+    box-shadow: 0 0 2px #255784, 0 0 8px #255784;
+}
+
+.hrNoBorder{
+    border-top: 1px;
+}
+
+.hdFtBg{
+    background-color: #e3f2fd;
+}
+
+.footerTitulo{
+    color: #000000;
+    font-size: 20px;
+}
+.footerFuente {
+    color: #000000;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: lighter; 
+}
+
+.marginButton{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
