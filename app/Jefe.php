@@ -8,5 +8,5 @@ class Jefe extends Model
 {
     //
     //public $incrementing = false;
-    //protected $primaryKey = '';
+    protected $primaryKey = 'id_jefe';
 }

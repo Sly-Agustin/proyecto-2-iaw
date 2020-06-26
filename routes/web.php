@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('laravel-home');
 
+/*Rutas correspondientes a las rutas principales y a los links del header*/
 /*Route::view('inicio', 'inicio')->name('inicio');*/
 Route::get('inicio', 'pagesController@inicio')->name('inicio');
 Route::get('qs', 'pagesController@qs')->name('qs');
@@ -24,12 +25,19 @@ Route::get('crear_usuario', 'pagesController@crear_usuario')->name('crearUsuario
 
 Route::post('crear_usuario/result', 'pagesController@crear_usuario_result')->name('crearUsuario.result');
 
-/*Route::get('productos', function () {
-    return view('productos');
-})->name('productos');*/
-Route::get('productos', 'pagesController@productos')->name('productos');
+/*Rutas correspondientes a las páginas de los productos, compras de los mismos*/
+Route::get('productos/{id}', 'productoController@detallado')->name('productos.detallado');
+//Route::get('productos/{id}/comprar', 'productoController@comprar')->name('productos.comprar')->middleware('auth');
+Route::get('productos/{id}/comprar', 'productoController@comprar', function() {
+    $value = session('key', 'default');
+})->name('productos.comprar')->middleware('auth');
+Route::post('productos/{id}/compradoPost', 'productoController@compradoPost')->name('productos.compradoPost');
+Route::resource('/productos', 'productoController');
 
-Route::get('productos/{nombre}', 'pagesController@detallado')->name('productos.detallado');
+/*Rutas correspondientes a las rutas de los usuarios, su panel de control, etc*/ 
+Route::get('usuario/panel_de_control', 'usuarioController@panel')->name('usuario.panel_de_control');
+Route::post('usuario/tarjeta_agregada', 'usuarioController@tarjetaAgregar')->name('usuario.tarjeta_agregada');
+Route::resource('/usuario', 'usuarioController');
 
 Auth::routes();
 

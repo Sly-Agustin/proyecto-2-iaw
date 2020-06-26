@@ -1,6 +1,10 @@
 @extends('plantilla')
 
 @section('seccion')
+<!--Usado para los botones de compra-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
 <hr class="hrNoBorder">
 <div class="d-flex" id="wrapper">
 
@@ -31,22 +35,43 @@
             <thead>
                 <tr>
                 <th scope="col">#id</th>
+                <th scope="col">Tipo</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripcion</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Especificaciones</th>
+                <th scope="col">URL del fabricante</th>
+                @guest
+                @else
+                <th scope="col"></th>
+                @endguest
                 </tr>
             </thead>
             <tbody>
                 @foreach($productos as $item)           
                 <tr>
-                <th scope="row">{{$item->id}}</th>
+                <th scope="row">{{$item->id_producto}}</th>
+                <td>{{$item->tipo}}</td>
                 <td>{{$item->nombre}}</td>
                 <td>{{$item->descripcion}}</td>
                 <td>
-                    <a href="{{route('productos.detallado', $item)}}">
+                    <a href="{{route('productos.detallado', $item->id_producto)}}">
                         {{$item->nombre}}
                     </a>
                 </td>
+                <td>
+                    <a href="{{$item->urlFabricante}}" target="_blank" rel="noreferrer">
+                        Link
+                    </a>
+                </td>   
+                @guest
+                @else
+                <td scope="col">
+                    <a href="{{route('productos.comprar', $item)}}">
+                        Comprar
+                    </a>
+                </td>
+                
+                @endguest
                 </tr>
                 @endforeach
             </tbody>

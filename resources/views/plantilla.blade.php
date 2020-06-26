@@ -23,7 +23,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos</a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('productos') }}">Todos los productos</a>
+                        <a class="dropdown-item" href="{{ route('productos.index') }}">Todos los productos</a>
+                        {{-- <a class="dropdown-item" href="{{ route('productos.index') }}">Todos los productos</a> --}}
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item bgLightBlueLight" href="#">Procesadores</a>
                         <div class="dropdown-divider"></div>
@@ -69,6 +70,10 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('usuario.panel_de_control') }}">
+                                {{ __('Panel') }}
+                        </a>
+                        
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">
@@ -83,8 +88,9 @@
             @endguest
         </ul>
     </nav>
-
+    <main class="py-4">
     @yield('seccion')
+    </main>
     <!--Footer-->
     <footer id="footer" class="footer hdFtBg" >
         <div class="row">

@@ -16,6 +16,9 @@ class CreateComprasTable extends Migration
         Schema::create('compras', function (Blueprint $table) {
             $table->id('id_compra');
             $table->integer('cantidad');
+            $table->string('nombre');
+            $table->unsignedInteger('user_id');         //Referencia a la ID del usuario
+            $table->unsignedInteger('producto_id');     //Referencia a la ID del producto
             $table->timestamp('fechaCompra')->useCurrent();
         });
     }

@@ -19,6 +19,10 @@ class pagesController extends Controller
         $productos=App\Producto::paginate(2);
         return view('productos', compact('productos'));
     }
+    public function detallado($id_producto){
+        $datos = App\Producto::findOrFail($id_producto);
+        return view('productos.detallado', compact('datos'));
+    }
 
     public function qs(){
         return view('qs');
@@ -64,10 +68,5 @@ class pagesController extends Controller
             return back()->with('mensaje', 'Creación de usuario exitosa');
             //return view('resultUser.result');
         }       
-    }
-
-    public function detallado($nombre){
-        $datos = App\Producto::findOrFail($nombre);
-        return view('productos.detallado', compact('datos'));
     }
 }
