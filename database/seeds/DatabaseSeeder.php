@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             ProductosSeeder::class,
             DomiciliosSeeder::class,
+            JefesSeeder::class,
         ]);
     }
 }

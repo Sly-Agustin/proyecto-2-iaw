@@ -46,6 +46,17 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'jefe' => [
+            'driver' => 'session',
+            'provider' => 'jefes',
+        ],
+
+        'jefe-api' => [
+            'driver' => 'token',
+            'provider' => 'jefes',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -69,6 +80,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        'jefes' => [
+            'driver' => 'eloquent',
+            'model' => App\Jefe::class,
         ],
 
         // 'users' => [
@@ -95,6 +110,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'jefes' => [
+            'provider' => 'jefes',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

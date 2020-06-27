@@ -39,6 +39,13 @@ Route::get('usuario/panel_de_control', 'usuarioController@panel')->name('usuario
 Route::post('usuario/tarjeta_agregada', 'usuarioController@tarjetaAgregar')->name('usuario.tarjeta_agregada');
 Route::resource('/usuario', 'usuarioController');
 
+/*Rutas jefe */
+Route::prefix('admin')->group(function() {
+    Route::get('/login', 'Auth\JefeLoginController@showLoginForm')->name('jefe.login');
+    Route::post('/login', 'Auth\JefeLoginController@login')->name('jefe.login.submit');
+    Route::get('/', 'adminController@index')->name('jefe.dashboard');
+}); 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
