@@ -28,6 +28,7 @@ class JefeLoginController extends Controller
             // Si se loguea, redirigir
             return redirect()->intended(route('jefe.dashboard'));
         }
+        
         // Si no volver al login
         return redirect()->back()->withInput($request->only('email', 'remember'));
     }

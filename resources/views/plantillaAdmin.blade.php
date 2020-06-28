@@ -14,43 +14,8 @@
   </head>
   <body class="">   
     <nav id="header" class="navbar navbar-expand-sm bgHeader p-2 hdFtBg shadow-sm">
-        <a class="navbar-brand" href="{{ route('inicio') }}"> <img width="100" height="60" id="joystick" src="{{url('/images/hardware.png')}}" class="d-inline-block align-center" alt="hardstoreimg"></a>
-        <div class="collapse navbar-collapse p-2" id="navbarSupportedContent">
-            <ul class="navbar-nav bd-navbar-nav flex-row">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('inicio') }}">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos</a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('productos.index') }}">Todos los productos</a>
-                        {{-- <a class="dropdown-item" href="{{ route('productos.index') }}">Todos los productos</a> --}}
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item bgLightBlueLight" href="#">Procesadores</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">AMD</a>
-                        <a class="dropdown-item" href="#">Intel</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Motherboards</a>
-                        <a class="dropdown-item" href="#">Memorias RAM</a>
-                        <a class="dropdown-item" href="#">Gabinetes</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item bgLightBlueLight" href="#">Placas de video</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Nvidia</a>
-                        <a class="dropdown-item" href="#">Radeon</a>
-                    </div>
-                    </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('qs') }}">¿Quiénes somos?</a>
-                </li>
-                <li>
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                    </form>
-                </li>
-            </ul>
+        <a class="navbar-brand" href="{{ route('jefe.dashboard') }}"> <img width="100" height="60" id="joystick" src="{{url('/images/hardware.png')}}" class="d-inline-block align-center" alt="hardstoreimg"></a>
+            
         </div>
         <ul class="navbar-nav flex-row ml-md-auto d-gone d-md-flex">
             <!-- Authentication Links -->
@@ -70,7 +35,7 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('usuario.panel_de_control') }}">
+                        <a class="dropdown-item" href="{{ route('jefe.dashboard') }}">
                                 {{ __('Panel') }}
                         </a>
                         

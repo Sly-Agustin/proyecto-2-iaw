@@ -13,7 +13,7 @@ class CreateJefesTable extends Migration
      */
     public function up()
     {
-        Schema::create('jefes', function (Blueprint $table) {
+        Schema::create('jeves', function (Blueprint $table) {
             $table->id('id_jefe')->unique();    
             $table->string('email')->unique();
             $table->string('nombre');
@@ -31,6 +31,6 @@ class CreateJefesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jefes');
+        Schema::dropIfExists('jeves');
     }
 }

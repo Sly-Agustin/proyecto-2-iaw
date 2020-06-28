@@ -43,6 +43,13 @@ Route::resource('/usuario', 'usuarioController');
 Route::prefix('admin')->group(function() {
     Route::get('/login', 'Auth\JefeLoginController@showLoginForm')->name('jefe.login');
     Route::post('/login', 'Auth\JefeLoginController@login')->name('jefe.login.submit');
+    Route::get('/agregarP', 'adminController@agregarProducto')->name('jefe.agregarProducto');
+    Route::post('/agregadoP', 'adminController@agregarProductoPost')->name('jefe.agregarProductoPost');
+    Route::get('/modificar_stock', 'adminController@modificarStock')->name('jefe.modificarStock');
+    Route::put('/modificar_stock_post', 'adminController@modificarStockPost')->name('jefe.modificarStockPost');
+    Route::get('/quitar_producto', 'adminController@quitarProducto')->name('jefe.quitarProducto');
+    Route::put('/quitar_producto_post', 'adminController@quitarProductoPost')->name('jefe.quitarProductoPost');
+    Route::put('/agregar_back_post', 'adminController@agregarProductoVentaPost')->name('jefe.agregarProductoVentaPost');
     Route::get('/', 'adminController@index')->name('jefe.dashboard');
 }); 
 

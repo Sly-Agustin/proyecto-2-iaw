@@ -18,7 +18,8 @@ class productoController extends Controller
      */
     public function index()
     {
-        $productos=App\Producto::paginate(2);
+        /*$productos=App\Producto::paginate(2);*/
+        $productos=App\Producto::where('estaEnVenta', true)->paginate(2);
         return view('productos', compact('productos'));
     }
 

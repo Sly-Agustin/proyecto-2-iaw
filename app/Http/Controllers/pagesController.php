@@ -16,7 +16,7 @@ class pagesController extends Controller
     }
 
     public function productos(){
-        $productos=App\Producto::paginate(2);
+        $productos=App\Producto::all()->where('estaEnVenta', true)->paginate(2);
         return view('productos', compact('productos'));
     }
     public function detallado($id_producto){

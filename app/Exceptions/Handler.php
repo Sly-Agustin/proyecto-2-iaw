@@ -3,6 +3,11 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Support\Arr;
+use Response;
+use Exception;
+use Request;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -48,8 +53,21 @@ class Handler extends ExceptionHandler
      *
      * @throws \Throwable
      */
-    public function render($request, Throwable $exception)
-    {
+    public function render($request, Throwable $exception){
+        $class = get_class($exception);
+        switch($class) {
+            case 'Illuminate\Auth\AuthenticationException':
+                $guard = Arr::get($exception->guards(), 0);
+                switch ($guard) {
+                    case 'jefe':
+                        $login = 'jefe.login';
+                        break;
+                    default:
+                        $login = 'login';
+                        break;
+                }
+                return redirect()->route($login);
+        }
         return parent::render($request, $exception);
     }
 }

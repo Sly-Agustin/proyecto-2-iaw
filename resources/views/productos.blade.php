@@ -40,6 +40,7 @@
                 <th scope="col">Descripcion</th>
                 <th scope="col">Especificaciones</th>
                 <th scope="col">URL del fabricante</th>
+                <th scope="col">Stock disponible</th>
                 @guest
                 @else
                 <th scope="col"></th>
@@ -63,6 +64,7 @@
                         Link
                     </a>
                 </td>   
+                <td>{{$item->stock}}</td>
                 @guest
                 @else
                 <td scope="col">

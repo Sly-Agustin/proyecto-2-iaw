@@ -22,7 +22,7 @@ class CreateProductosTable extends Migration
             $table->string('urlFabricante');
             $table->double('precio');
             $table->integer('stock');
-            
+            $table->boolean('estaEnVenta'); 
         });
     }
 
