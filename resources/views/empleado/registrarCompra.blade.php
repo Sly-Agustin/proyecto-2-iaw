@@ -1,8 +1,4 @@
-@extends('plantilla')
-
-@section('stylesheets')
-<link rel="stylesheet" href="{{ asset('css/botonescss.css') }}">
-@endsection
+@extends('plantillaEmpleado')
 
 @section('seccion')
 <div class="container">
@@ -17,24 +13,30 @@
             </ul>
         </div>
     @endif
+    <!--Registro de compra exitosa-->
+    @if (session('mensaje'))
+        <div class="alert alert-success">
+            {{ session('mensaje') }}
+        </div>
+    @endif
     @if (session('mensajeErrorStock'))
         <div class="alert alert-danger">
             {{ session('mensajeErrorStock') }}
         </div>
     @endif
-    
-    <div class="d-flex flex-row" id="wrapper">
-        <div class="container-fluid">
-            <p class="text-left">Seleccione la cantidad a comprar de {{$datos->nombre}}</p>
-            
-        </div>
 
 
-        <div class="container-fluid">
-            <!--<form action="{{ action('productoController@compradoPost', $datos->id_producto) }}" method="POST">-->
-            <form action="{{ action('productoController@compradoPost', $datos->id_producto) }}" method="POST">
-            @csrf
-                <div class="custom-control custom-radio custom-control-inline">
+    <h2 class="pb-3 pt-5">Registrar venta</h1>
+    <form id="actionLabel" method="POST" action="{{ action('empleadoController@registrarCompraPost') }}">
+    <label for="actionLabel">Seleccione el producto que ha sido vendido en el local e indique su cantidad</label>
+    @method('PUT')
+    @csrf
+        <select name="idProducto" class="form-control form-control-sm" >
+            @foreach($productosNoVenta as $item)         
+            <option value="{{$item->id_producto}}">{{$item->nombre}}</option>
+            @endforeach
+        </select>
+        <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="customRadioInline1" name="cantidadCompra" class="custom-control-input" value="1" checked>
                     <label class="custom-control-label" for="customRadioInline1">1</label>
                 </div>
@@ -54,27 +56,7 @@
                     <input type="radio" id="customRadioInline5" name="cantidadCompra" class="custom-control-input" value="5">
                     <label class="custom-control-label" for="customRadioInline5">5</label>
                 </div>
-                @if ($datosTodasTarjetas->isEmpty())
-                <div class="text-center"><p>No puede realizarse la compra si no tiene tarjetas asociadas a la cuenta</p></div>
-                @else 
-                <div class="text-center">
-                    <button type="submit" id="comprarButton" class="btn btn-primary marginButton btn-lg active">Comprar</button>
-                </div>
-                @endif
-            </div>
-        </div>
-    </div>
-    <div>
-        <p>Seleccione la tarjeta a utilizar para la compra</p>
-        <select class="form-control form-control-sm">
-        @foreach ($datosTodasTarjetas as $tarjet)
-            <option>{{$tarjet->banco}}, {{$tarjet->numero}}</option>
-        @endforeach
-        </select>
-    </div>
+        <input type="submit" value="Aceptar"/>
+    </form>
 </div>
-@endsection
-
-@section('imports')
-<script type="text/javascript" src="{{ URL::asset('js/botonesjs.js') }}"></script>
 @endsection

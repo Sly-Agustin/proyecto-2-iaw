@@ -57,6 +57,17 @@ return [
             'provider' => 'jefes',
             'hash' => false,
         ],
+
+        'empleado' => [
+            'driver' => 'session',
+            'provider' => 'empleados',
+        ],
+
+        'empleado-api' => [
+            'driver' => 'token',
+            'provider' => 'empleados',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -84,6 +95,10 @@ return [
         'jefes' => [
             'driver' => 'eloquent',
             'model' => App\Jefe::class,
+        ],
+        'empleados' => [
+            'driver' => 'eloquent',
+            'model' => App\Empleado::class,
         ],
 
         // 'users' => [
@@ -116,6 +131,12 @@ return [
         ],
         'jefes' => [
             'provider' => 'jefes',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'empleados' => [
+            'provider' => 'empleados',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

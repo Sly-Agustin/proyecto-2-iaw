@@ -53,6 +53,19 @@ Route::prefix('admin')->group(function() {
     Route::get('/', 'adminController@index')->name('jefe.dashboard');
 }); 
 
+/*Rutas empleado */
+Route::prefix('empleado')->group(function() {
+    Route::get('/login', 'Auth\EmpleadoLoginController@showLoginForm')->name('empleado.login');
+    Route::post('/login', 'Auth\EmpleadoLoginController@login')->name('empleado.login.submit');
+    Route::get('/modificar_stock', 'empleadoController@modificarStock')->name('empleado.modificarStock');
+    Route::put('/modificar_stock_post', 'empleadoController@modificarStockPost')->name('empleado.modificarStockPost');
+    Route::put('/quitar_producto_post', 'empleadoController@quitarProductoPost')->name('empleado.quitarProductoPost');
+    Route::put('/agregar_back_post', 'empleadoController@agregarProductoVentaPost')->name('empleado.agregarProductoVentaPost');
+    Route::get('/registrar_compra', 'empleadoController@registrarCompra')->name('empleado.registrarCompra');
+    Route::put('/registrar_compra_post', 'empleadoController@registrarCompraPost')->name('empleado.registrarCompraPost');
+    Route::get('/', 'empleadoController@index')->name('empleado.dashboard');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

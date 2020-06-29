@@ -125,6 +125,10 @@ class productoController extends Controller
                 "nombre" => $datos->nombre,
                 "numero" => $request->cantidadCompra,
             ];
+            // Esto no se hace en el validador porque podría recibir datos de stock antiguos si se basa en el valor que viene del HTML y generar compras sin stock disponible.
+            if ($datos->stock<$request->cantidadCompra) {
+                return back()->with('mensajeErrorStock','No hay stock suficiente para la compra');
+            }
             $nuevaCompra = new App\Compra;
             $nuevaCompra->cantidad=$array['numero'];
             $nuevaCompra->producto_id=$idProducto;

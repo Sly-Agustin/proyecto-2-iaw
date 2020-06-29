@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use App\Empleado;
 
 class EmpleadosSeeder extends Seeder
 {
@@ -12,5 +14,13 @@ class EmpleadosSeeder extends Seeder
     public function run()
     {
         //
+        Empleado::Truncate();
+        $empleado = new App\Empleado;
+        $empleado->nombre = 'John';
+        $empleado->apellido = 'Caldera';
+        $empleado->username = 'JohnC';
+        $empleado->email = 'johnc@gmail.com';
+        $empleado->password = Hash::make('empleado');
+        $empleado->save();
     }
 }
