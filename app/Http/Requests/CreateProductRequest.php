@@ -30,8 +30,26 @@ class CreateProductRequest extends FormRequest
             'productoTipo' => 'required',
             'productoUrl' => 'required',
             'productoPrecio' => ['required', 'integer', 'min:0'],
-            'productoStock' => ['required', 'integer', 'min:0']
+            'productoStock' => ['required', 'integer', 'min:0'],
+            'imagen' => ['file', 'image', 'max:5000'],
         ];
+        /*return tap(
+            request()->validate([
+                'productoNombre' => 'required',
+                'productoDescripcion' => 'required',
+                'productoDescripcionLarga' => 'required',
+                'productoTipo' => 'required',
+                'productoUrl' => 'required',
+                'productoPrecio' => ['required', 'integer', 'min:0'],
+                'productoStock' => ['required', 'integer', 'min:0']
+            ]), function(){
+                if (request()->hasFile('imagen')){
+                    request()->validate([
+                        'imagen' => 'file|image|max:5000'
+                    ]);
+                }
+            }
+        );*/
     }
 
     public function messages(){
@@ -47,6 +65,9 @@ class CreateProductRequest extends FormRequest
             'productoStock.required' => 'El stock es obligatorio',
             'productoStock.integer' => 'El stock debe ser un número entero',
             'productoStock.min' => 'El stock debe ser un número positivo',
+            'imagen.file' => 'Lo subido no es un archivo',
+            'imagen.image' => 'El archivo no es una imagen',
+            'imagen.max' => 'Imagen demasiado pesada, la imagen puede pesar hasta 5 MB',
         ];
     }
     

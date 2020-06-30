@@ -41,6 +41,16 @@ class adminController extends Controller
 
     public function agregarProductoPost(CreateProductRequest $request){
         $validator = Validator::make($request->all(), $request->rules(), $request->messages());
+        //return dd($request->image);
+        //return dd($request->file('imagen'));
+        // Puesto para debuggear, borrar cuando se almacene la imagen
+        /*if ($request->hasFile('imagen')){
+            return $request->file('imagen');
+        }
+        else {
+            return 'awww :(';
+        }*/
+
         if ($validator->valid()){
             $nuevoProducto= new App\Producto;
             $nuevoProducto->nombre=$request->productoNombre;
@@ -51,6 +61,27 @@ class adminController extends Controller
             $nuevoProducto->precio=$request->productoPrecio;
             $nuevoProducto->stock=$request->productoStock;
             $nuevoProducto->estaEnVenta=true;
+
+            //Debug
+            /*if ($request->has('imagen')){
+                $nuevoProducto->update([
+                    'imagen' => request()->file('imagen')->store('uploads', 'public'),
+                ]);
+            }*/
+            /*$file = $request->file('imagen');
+            $contents = $file->openFile()->fread($file->getSize());
+            $nuevoProducto->imagen= $contents;*/
+            if ($request->hasFile('imagen')) {
+                if($request->file('imagen')->isValid()) {
+                    try {
+                        $file = $request->file('image');
+                        $image = base64_encode(file_get_contents($request->file('imagen')->path()));
+                        $nuevoProducto->imagen=$image;
+                    } catch (FileNotFoundException $e) {
+                        echo "catch";
+                    }
+                }
+            }
             $nuevoProducto->save();
             return back()->with('mensaje', 'Producto agregado exitosamente');
         }

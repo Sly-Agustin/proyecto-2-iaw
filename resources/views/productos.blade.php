@@ -41,6 +41,7 @@
                 <th scope="col">Especificaciones</th>
                 <th scope="col">URL del fabricante</th>
                 <th scope="col">Stock disponible</th>
+                <th scope="col">Imagen</th>
                 @guest
                 @else
                 <th scope="col"></th>
@@ -65,6 +66,11 @@
                     </a>
                 </td>   
                 <td>{{$item->stock}}</td>
+                @if ($item->imagen!=null)
+                <td><img width="100" height="60" src="data:image/png;base64,{{$item->imagen}}" class="d-inline-block align-center" alt="{{$item->nombre}}img"></td>
+                @else
+                <td>No hay imagen disponible</td>
+                @endif
                 @guest
                 @else
                 <td scope="col">
@@ -72,9 +78,10 @@
                         Comprar
                     </a>
                 </td>
-                
                 @endguest
                 </tr>
+
+                
                 @endforeach
             </tbody>
         </table>   

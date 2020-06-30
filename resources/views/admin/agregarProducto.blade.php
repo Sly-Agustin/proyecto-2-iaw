@@ -31,16 +31,17 @@
         <p></p>
     </div>
     <div class="container containerBg borderRound">
-    <p>Nombre: Obligatorio, cualquier combinación de caracteres</p>
-    <p>Descripcion: Obligatoria, descripción básica del producto</p>
-    <p>Tipo/categoria: Obligatoria, que es el producto en cuestión (procesador, memoria, motherboard, etc)</p>
-    <p>URL del fabricante: Obligatoria, página oficial del producto</p>
-    <p>Precio: Obligatorio, en pesos, debe ser un número positivo</p>
-    <p>Stock: Obligatorio, se refiere a la cantidad de unidades disponibles, debe ser un número positivo o 0</p>
-    <p>Especificaciones técnicas: Obligatorio, varían según el tipo de producto, por ejemplo frecuencia para las memorias RAM</p>
+        <p>Nombre: Obligatorio, cualquier combinación de caracteres</p>
+        <p>Descripcion: Obligatoria, descripción básica del producto</p>
+        <p>Tipo/categoria: Obligatoria, que es el producto en cuestión (procesador, memoria, motherboard, etc)</p>
+        <p>URL del fabricante: Obligatoria, página oficial del producto</p>
+        <p>Precio: Obligatorio, en pesos, debe ser un número positivo</p>
+        <p>Stock: Obligatorio, se refiere a la cantidad de unidades disponibles, debe ser un número positivo o 0</p>
+        <p>Especificaciones técnicas: Obligatorio, varían según el tipo de producto, por ejemplo frecuencia para las memorias RAM</p>
+        <p>Imagen del producto: Opcional, elija una imagen desde su PC para subir como imagen ilustrativa del producto.</p>
     </div>
     <div class="text-center">
-        <form action="{{route('jefe.agregarProductoPost')}}" method="POST">
+        <form action="{{route('jefe.agregarProductoPost')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -71,6 +72,11 @@
                     <label>Especificaciones técnicas</label>
                     <textarea class="form-control" name="productoDescripcionLarga" id="inputLargeDescription" rows="3"></textarea>
                     <!--<input type="text" name="productoDescripcionLarga" class="form-control" id="inputLargeDescription" placeholder="Descripcion">-->
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="imagen">Imagen del producto</label>
+                    <input type="file" name="imagen" class="px-2 py-2">
+                    <div>{{ $errors->first('image') }}</div>
                 </div>
                 <div class="text-center">
                     <button type="submit" id="agregarProductoButton" class="btn btn-primary marginButton btn-lg active">Agregar producto</button>
