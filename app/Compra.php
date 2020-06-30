@@ -17,4 +17,5 @@ class Compra extends Model
     {
         return $this->belongsTo('App\Producto', 'producto_id', 'id_producto');  // (modelo, nombre de key en compra, nombre de key en producto)
     }
+
 }

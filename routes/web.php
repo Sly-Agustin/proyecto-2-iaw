@@ -50,6 +50,8 @@ Route::prefix('admin')->group(function() {
     Route::get('/quitar_producto', 'adminController@quitarProducto')->name('jefe.quitarProducto');
     Route::put('/quitar_producto_post', 'adminController@quitarProductoPost')->name('jefe.quitarProductoPost');
     Route::put('/agregar_back_post', 'adminController@agregarProductoVentaPost')->name('jefe.agregarProductoVentaPost');
+    Route::get('/agregar_empleado', 'adminController@agregarEmpleado')->name('jefe.agregarEmpleado');
+    Route::post('/agregar_empleado', 'adminController@agregarEmpleadoPost')->name('jefe.agregarEmpleadoPost');
     Route::get('/', 'adminController@index')->name('jefe.dashboard');
 }); 
 

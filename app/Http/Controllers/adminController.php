@@ -8,6 +8,8 @@ use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\ModifyProductRequest;
 use App\Http\Requests\UpdateStockRequest;
 use App\Http\Requests\AddProductBackRequest;
+use App\Http\Requests\AddEmployeeRequest;
+use Illuminate\Support\Facades\Hash;
 use App;
 use Validator;
 
@@ -94,5 +96,23 @@ class adminController extends Controller
             $productoAgregar->save();
         }
         return back()->with('mensaje', 'Producto agregado a la lista');
+    }
+
+    public function agregarEmpleado(){
+        return view('admin/agregarEmpleado');
+    }
+
+    public function agregarEmpleadoPost(AddEmployeeRequest $request){
+        $validator = Validator::make($request->all(), $request->rules(), $request->messages());
+        if ($validator->valid()){
+            $nuevoEmpleado = new App\Empleado;
+            $nuevoEmpleado->nombre=$request->nombre;
+            $nuevoEmpleado->apellido=$request->apellido;
+            $nuevoEmpleado->email=$request->email;
+            $nuevoEmpleado->password=Hash::make($request->contrasenia);
+            $nuevoEmpleado->username=$request->usuario;
+            $nuevoEmpleado->save();   
+        }
+        return back()->with('mensaje', 'Empleado creado correctamente');
     }
 }

@@ -53,15 +53,15 @@
                 <div class="card-body">
                     <h3 class="card-title">Agregar empleados</h3>
                     <p>Permite crear cuentas para los nuevos empleados.</p>
-                    <div class="col text-center"><a class="btn btn-primary" href="#" role="button">Crear</a></div>
+                    <div class="col text-center"><a class="btn btn-primary" href="{{route('jefe.agregarEmpleado')}}" role="button">Crear</a></div>
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 pb-3">
             <div class="card bg-transparent">
                 <div class="card-body">
-                    <h3 class="card-title">Eliminar empleados</h3>
-                    <p>Permite eliminar cuentas de empleados.</p>
+                    <h3 class="card-title">Dar de alta/baja empleados</h3>
+                    <p>Permite dar de baja una cuenta de empleado o volverla a habilitar.</p>
                     <div class="col text-center"><a class="btn btn-primary" href="#" role="button">Borrar</a></div>
                 </div>
             </div>

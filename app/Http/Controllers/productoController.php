@@ -103,15 +103,6 @@ class productoController extends Controller
         return view('productos.comprar', compact('datos', 'datosTodasTarjetas'));
     }
 
-    /*public function comprado($nombre){
-        $datos = App\Producto::findOrFail($nombre);
-        $array = [
-            "datos" => $datos->nombre,
-            "numero" => '1',
-        ];
-        return view('productos.comprado', compact('array'));
-    }*/
-
     public function compradoPost(BuyProductRequest $request, $idProducto){
         $validator = Validator::make($request->all(), $request->rules(), $request->messages());
         $request->request->add(['id_producto' => $idProducto]);
@@ -135,6 +126,16 @@ class productoController extends Controller
             $nuevaCompra->nombre=$datos->nombre;
             $nuevaCompra->user_id=Auth::id();
             $nuevaCompra->save();
+
+            $datos->stock=($datos->stock) - ($request->cantidadCompra);
+            $datos->save();
+
+            $cambioStock= new App\Cambio_stock;
+            $cambioStock->cantidad=$request->cantidadCompra;
+            $cambioStock->descripcion="Compra online";
+            $cambioStock->producto_id=$idProducto;
+            $cambioStock->usuario_id=Auth::id();
+            $cambioStock->save();
             return view('productos.compradoPost', compact('array'));
         }
     }

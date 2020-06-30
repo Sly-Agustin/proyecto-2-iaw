@@ -86,6 +86,13 @@ class empleadoController extends Controller
             }
             $productoComprar->stock=($productoComprar->stock) - ($request->cantidadCompra);
             $productoComprar->save();
+
+            $productoCambio=new App\Cambio_stock;
+            $productoCambio->cantidad=$request->cantidadCompra;
+            $productoCambio->descripcion="Compra en el local físico";
+            $productoCambio->producto_id=$productoComprar->id_producto;
+            $productoCambio->empleado_id=Auth::id();
+            $productoCambio->save();
         }
         return back()->with('mensaje', 'Registro de compra exitoso');
     }  
