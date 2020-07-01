@@ -1,0 +1,36 @@
+table thead tr th{
+    color: #CCD1D6;
+}
+table tbody{
+    color: #CCD1D6;
+    /*color: #ABAFB4;*/
+}
+div div a.list-group-item {
+    color: #CCD1D6 ;
+}
+
+li.page-item.active span.page-link{
+    background-color: #9DF330;
+    border-color: #9DF330;
+    color: #000000;
+}
+li.page-item a.page-link{
+    color: #ffffff;
+    background-color: #353535;
+    border: 1px solid #353535;
+    transition:0.5s;
+}
+li.page-item a.page-link:hover{
+    transition:0.5s;
+    color: #ffffff;
+    box-shadow: 0 0 5px #9DF330,
+                0 0 25px #9DF330,
+                0 0 50px #9DF330,
+                0 0 200px #9DF330;
+
+}
+li.page-item.disabled span.page-link{
+    color: #ffffff;
+    background-color: #353535;
+    border: 1px solid #353535;
+}

@@ -8,14 +8,17 @@
     <!-- Bootstrap CSS -->
     @yield('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/plantillacss.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/neoncss.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/containercss.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     
   </head>
-  <body class="">   
-    <nav id="header" class="navbar navbar-expand-sm bgHeader p-2 hdFtBg shadow-sm">
+  <body class="bgImage">
+    <!--<nav id="header" class="navbar navbar-expand-sm bgHeader p-2 hdFtBg shadow-sm">-->
+    <nav id="header" class="navbar navbar-expand-sm bgHeader p-2 bgBlack shadow-sm">
         <a class="navbar-brand" href="{{ route('inicio') }}"> <img width="100" height="60" id="joystick" src="{{url('/images/hardware.png')}}" class="d-inline-block align-center" alt="hardstoreimg"></a>
-        <div class="collapse navbar-collapse p-2" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse p-2 verdeNeonFont" id="navbarSupportedContent">
             <ul class="navbar-nav bd-navbar-nav flex-row">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('inicio') }}">Home</a>
@@ -56,11 +59,11 @@
             <!-- Authentication Links -->
             @guest
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a href="{{ route('login') }}" role="button" class="verdeNeonButton rounded mr-2">{{ __('Login') }}</a>
                 </li>
                 @if (Route::has('register'))
                 <li class="nav-item">
-                    <a href="{{ route('crearUsuario') }}" class="btn btn-primary" role="button" aria-pressed="true">Registrarse</a>
+                    <a href="{{ route('crearUsuario') }}" class="verdeNeonButton rounded" role="button" aria-pressed="true">Registrarse</a>
                 </li>
                 @endif
                 @else
@@ -92,28 +95,28 @@
     @yield('seccion')
     </main>
     <!--Footer-->
-    <footer id="footer" class="footer hdFtBg" >
-        <div class="row">
+    <footer id="footer" class="footer bgFooter fixed-bottom" >
+        <div class="row text-white">
             <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="footerTitulo" id="contactoFooter">
+                <div class="footerTitulo text-white" id="contactoFooter">
                     <p>Contacto:</p>
                 </div>
-                <div class="footerFuente" id="telFooter">
+                <div class="footerFuente text-white" id="telFooter">
                     Tel: 0291 456-6789
                 </div>
-                <div class="footerFuente" id="mailFooter">
+                <div class="footerFuente text-white" id="mailFooter">
                     hardware-store@gmail.com
                 </div>
-                <div class="footerFuente" id="dirFooter">
+                <div class="footerFuente text-white" id="dirFooter">
                     Caronti 456
                 </div>
             </div>
             
             <div class="col-md-4 col-sm-6 col-xs-12 text-center">
                 <p>Seguinos en nuestras redes!</p>    
-                <a class="navbar-link whiteColor" href="https://www.facebook.com/hardware-store" target="_blank" rel="noreferrer" aria-label="GitHub"><img width="60" id="facebook" src="{{url('images/facebook.png')}}" class="facebookImgInverted" alt="faceimg"></a> <!--El noreferrrer se utiliza por cuestiones de seguridad-->
-                <a class="navbar-link whiteColor" href="https://twitter.com/hardware-store" target="_blank" rel="noreferrer" aria-label="GitHub"><img width="60" id="twitter" src="{{url('images/twitter.png')}}" class="twitterImgInverted" alt="twitimg"></a>
-                <a class="navbar-link whiteColor" href="https://instagram.com/hardware-store" target="_blank" rel="noreferrer" aria-label="GitHub"><img width="60" id="instagram" src="{{url('images/instagram.png')}}" class="instagram" alt="instagramimg"></a>         
+                <a class="navbar-link whiteColor" href="https://www.facebook.com/hardware-store" target="_blank" rel="noreferrer" aria-label="GitHub"><img width="60" id="facebook" src="{{url('images/facebookInverted.png')}}" class="facebookImgInverted" alt="faceimg"></a> <!--El noreferrrer se utiliza por cuestiones de seguridad-->
+                <a class="navbar-link whiteColor" href="https://twitter.com/hardware-store" target="_blank" rel="noreferrer" aria-label="GitHub"><img width="60" id="twitter" src="{{url('images/twitterInverted.png')}}" class="twitterImgInverted" alt="twitimg"></a>
+                <a class="navbar-link whiteColor" href="https://instagram.com/hardware-store" target="_blank" rel="noreferrer" aria-label="GitHub"><img width="60" id="instagram" src="{{url('images/instagramInverted.png')}}" class="instagram" alt="instagramimg"></a>         
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12 text-right">
                 <div>Iconos diseñados por <a href="https://www.flaticon.es/autores/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es</a></div>

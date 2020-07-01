@@ -62,15 +62,6 @@ class adminController extends Controller
             $nuevoProducto->stock=$request->productoStock;
             $nuevoProducto->estaEnVenta=true;
 
-            //Debug
-            /*if ($request->has('imagen')){
-                $nuevoProducto->update([
-                    'imagen' => request()->file('imagen')->store('uploads', 'public'),
-                ]);
-            }*/
-            /*$file = $request->file('imagen');
-            $contents = $file->openFile()->fread($file->getSize());
-            $nuevoProducto->imagen= $contents;*/
             if ($request->hasFile('imagen')) {
                 if($request->file('imagen')->isValid()) {
                     try {
@@ -113,6 +104,18 @@ class adminController extends Controller
         $validator = Validator::make($request->all(), $request->rules(), $request->messages());
         $productoUpdate = App\Producto::findOrFail($request->idProducto);  
         if ($validator->valid()){
+            $productoUpdateCambio= new App\Cambio_stock;
+            if ($request->nuevoStock < $productoUpdate->stock){
+                $productoUpdateCambio->cantidad = $productoUpdate->stock - $request->nuevoStock;
+            }
+            else{
+                $productoUpdateCambio->cantidad = $request->nuevoStock - $productoUpdate->stock;
+            }
+            $productoUpdateCambio->descripcion=$request->productoCambioStockRazon;
+            $productoUpdateCambio->producto_id=$request->idProducto;
+            $productoUpdateCambio->jefe_id=Auth::id();
+            $productoUpdateCambio->save();
+
             $productoUpdate->stock=$request->nuevoStock;
             $productoUpdate->save();
         }

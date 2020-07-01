@@ -35,6 +35,10 @@
             <label class="pt-3" for="inputStock">Nuevo stock: </label>
             <input type="number" name="nuevoStock" class="form-control" id="inputStock" placeholder="Ej: 100" value="{{ old('nuevoStock') }}">
         </div>
+        <div class="form-group col-md-3">
+            <label>Razón del cambio de stock</label>
+            <textarea class="form-control" name="productoCambioStockRazon" id="inputStockChange" rows="3" placeholder="Ej: Llegó mercadería, cambio, garantía, daño, etc"></textarea>
+        </div>
         <input type="submit" value="Actualizar stock"/>
     </form>
 

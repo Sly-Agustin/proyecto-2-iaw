@@ -20,6 +20,7 @@ class CreateCambioStocksTable extends Migration
             $table->string('descripcion');
             $table->unsignedInteger('usuario_id')->nullable();
             $table->unsignedInteger('empleado_id')->nullable();
+            $table->unsignedInteger('jefe_id')->nullable();
             $table->unsignedInteger('producto_id');     //Referencia a la ID del producto
         });
     }

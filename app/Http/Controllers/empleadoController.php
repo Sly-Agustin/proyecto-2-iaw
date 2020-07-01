@@ -45,6 +45,19 @@ class empleadoController extends Controller
         $validator = Validator::make($request->all(), $request->rules(), $request->messages());
         $productoUpdate = App\Producto::findOrFail($request->idProducto);  
         if ($validator->valid()){
+            
+            $productoUpdateCambio= new App\Cambio_stock;
+            if ($request->nuevoStock < $productoUpdate->stock){
+                $productoUpdateCambio->cantidad = $productoUpdate->stock - $request->nuevoStock;
+            }
+            else{
+                $productoUpdateCambio->cantidad = $request->nuevoStock - $productoUpdate->stock;
+            }
+            $productoUpdateCambio->descripcion=$request->productoCambioStockRazon;
+            $productoUpdateCambio->producto_id=$request->idProducto;
+            $productoUpdateCambio->empleado_id=Auth::id();
+            $productoUpdateCambio->save();
+
             $productoUpdate->stock=$request->nuevoStock;
             $productoUpdate->save();
         }

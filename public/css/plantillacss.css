@@ -4,6 +4,9 @@
 .fontSize18{
     font-size: 18px;
 }
+.fontSize20{
+    font-size: 20px;
+}
 .bgBody{
     background: linear-gradient(#FFFFFF, #9B9B9B);
 }
@@ -40,3 +43,34 @@
     margin-bottom: 30px;
 }
 
+.bodyBlack {
+    background-color: #000000;
+}
+
+.bgFooter{
+    background-color: #0B0B0B;
+}
+
+.bgImage{
+    background-image: url('/images/blackbg4.jpg');
+}
+
+body { 
+    padding-bottom: 200px; 
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+  }
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 120px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 120px;
+}

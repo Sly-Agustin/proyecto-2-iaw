@@ -33,23 +33,6 @@ class CreateProductRequest extends FormRequest
             'productoStock' => ['required', 'integer', 'min:0'],
             'imagen' => ['file', 'image', 'max:5000'],
         ];
-        /*return tap(
-            request()->validate([
-                'productoNombre' => 'required',
-                'productoDescripcion' => 'required',
-                'productoDescripcionLarga' => 'required',
-                'productoTipo' => 'required',
-                'productoUrl' => 'required',
-                'productoPrecio' => ['required', 'integer', 'min:0'],
-                'productoStock' => ['required', 'integer', 'min:0']
-            ]), function(){
-                if (request()->hasFile('imagen')){
-                    request()->validate([
-                        'imagen' => 'file|image|max:5000'
-                    ]);
-                }
-            }
-        );*/
     }
 
     public function messages(){

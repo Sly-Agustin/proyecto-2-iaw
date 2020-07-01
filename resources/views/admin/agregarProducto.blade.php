@@ -71,7 +71,6 @@
                 <div class="form-group col-md-12">
                     <label>Especificaciones técnicas</label>
                     <textarea class="form-control" name="productoDescripcionLarga" id="inputLargeDescription" rows="3"></textarea>
-                    <!--<input type="text" name="productoDescripcionLarga" class="form-control" id="inputLargeDescription" placeholder="Descripcion">-->
                 </div>
                 <div class="form-group col-md-12">
                     <label for="imagen">Imagen del producto</label>

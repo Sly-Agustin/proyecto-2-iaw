@@ -1,0 +1,43 @@
+.bgBlack{
+    background: #050801; 
+}
+
+.verdeNeonButton{
+    position: relative;
+    display: inline-block;
+    padding: 15px 20px;
+    margin: 10px 0;
+    font-size: 18px;
+    color: #9DF330;
+    background: #050801; 
+    /*color: #03e9f4 celeste*/
+    text-decoration: none;
+    text-transform: uppercase;
+    transition:0.5s;
+    letter-spacing: 1px;
+    border: 1px solid #9DF330;
+}
+.verdeNeonButton:hover {
+    background: #9DF330;
+    color: #050801;
+    box-shadow: 0 0 5px #9DF330,
+                0 0 25px #9DF330,
+                0 0 50px #9DF330,
+                0 0 200px #9DF330;
+
+
+}
+
+.verdeNeonFont{
+    color: #9DF330;
+}
+li a{
+    color: #9DF330;
+}
+li a:hover{
+    color: #FFFFFF;
+}
+.roundBorder {
+    border-radius: 0.5rem;
+}
+    

@@ -1,5 +1,9 @@
 @extends('plantilla')
 
+@section('stylesheets')
+<link rel="stylesheet" href="{{ asset('css/productoscss.css') }}">
+@endsection
+
 @section('seccion')
 <!--Usado para los botones de compra-->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -9,15 +13,15 @@
 <div class="d-flex" id="wrapper">
 
 <!-- Sidebar -->
-<div class="bg-light border-right" id="sidebar-wrapper">
+<div class="bg-transparent border-right fontSize18 text-secondary" id="sidebar-wrapper">
   <div class="sidebar-heading text-center font-weight-bold">Categorias </div>
   <div class="list-group list-group-flush">
-    <a href="#" class="list-group-item list-group-item-action bg-light">Procesadores</a>
-    <a href="#" class="list-group-item list-group-item-action bg-light">Motherboards</a>
-    <a href="#" class="list-group-item list-group-item-action bg-light">Memorias RAM</a>
-    <a href="#" class="list-group-item list-group-item-action bg-light">Gabinetes</a>
-    <a href="#" class="list-group-item list-group-item-action bg-light">Placas de video</a>
-    <a href="#" class="list-group-item list-group-item-action bg-light">Refrigeración</a>
+    <a href="#" class="list-group-item list-group-item-action bg-transparent border-secondary">Procesadores</a>
+    <a href="#" class="list-group-item list-group-item-action bg-transparent border-secondary">Motherboards</a>
+    <a href="#" class="list-group-item list-group-item-action bg-transparent border-secondary">Memorias RAM</a>
+    <a href="#" class="list-group-item list-group-item-action bg-transparent border-secondary">Gabinetes</a>
+    <a href="#" class="list-group-item list-group-item-action bg-transparent border-secondary">Placas de video</a>
+    <a href="#" class="list-group-item list-group-item-action bg-transparent border-secondary">Refrigeración</a>
   </div>
 </div>
 <!-- /#sidebar-wrapper -->
@@ -29,23 +33,23 @@
   </div>
     
  
-    <div class="container-fluid">
-        <h1 class="text-center">Lista completa de productos</h1>  
+    <div class="container-fluid fontSize18">
+        <h1 class="text-center text-secondary">Lista completa de productos</h1>  
         <table class="table">
             <thead>
                 <tr>
-                <th scope="col">#id</th>
-                <th scope="col">Tipo</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Especificaciones</th>
-                <th scope="col">URL del fabricante</th>
-                <th scope="col">Stock disponible</th>
-                <th scope="col">Imagen</th>
-                @guest
-                @else
-                <th scope="col"></th>
-                @endguest
+                    <th scope="col">#id</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Especificaciones</th>
+                    <th scope="col">URL del fabricante</th>
+                    <th scope="col">Stock disponible</th>
+                    <th scope="col">Imagen</th>
+                    @guest
+                    @else
+                    <th scope="col"></th>
+                    @endguest
                 </tr>
             </thead>
             <tbody>
@@ -66,11 +70,15 @@
                     </a>
                 </td>   
                 <td>{{$item->stock}}</td>
+
+                <!--Imágenes-->
                 @if ($item->imagen!=null)
                 <td><img width="100" height="60" src="data:image/png;base64,{{$item->imagen}}" class="d-inline-block align-center" alt="{{$item->nombre}}img"></td>
                 @else
                 <td>No hay imagen disponible</td>
                 @endif
+
+                <!--En caso de estar logueado habilitar el boton de compra-->
                 @guest
                 @else
                 <td scope="col">

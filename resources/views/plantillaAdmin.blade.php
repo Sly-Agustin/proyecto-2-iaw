@@ -57,7 +57,7 @@
     @yield('seccion')
     </main>
     <!--Footer-->
-    <footer id="footer" class="footer hdFtBg" >
+    <footer id="footer" class="footer hdFtBg " >
         <div class="row">
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="footerTitulo" id="contactoFooter">
