@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-})->name('laravel-home');
+})->name('laravel-home');*/
+Route::get('/', 'pagesController@inicio')->name('laravel-home');
 
 /*Rutas correspondientes a las rutas principales y a los links del header*/
 /*Route::view('inicio', 'inicio')->name('inicio');*/

@@ -9,7 +9,7 @@ use Auth;
 class JefeLoginController extends Controller
 {
     public function __construct() {
-        $this->middleware('guest:jefe');     /* Analizar si es admin o jefe */
+        $this->middleware('guest:jefe');
     }
 
     public function showLoginForm(){
