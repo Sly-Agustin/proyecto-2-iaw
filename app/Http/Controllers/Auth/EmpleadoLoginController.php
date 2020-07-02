@@ -9,7 +9,7 @@ use Auth;
 class EmpleadoLoginController extends Controller
 {
     public function __construct() {
-        $this->middleware('guest:empleado');     /* Analizar si es empleado o guest */
+        $this->middleware('guest:empleado', ['except' => ['logout']]);     /* Analizar si es empleado o guest */
     }
 
     public function showLoginForm(){
@@ -31,5 +31,10 @@ class EmpleadoLoginController extends Controller
         
         // Si no volver al login
         return redirect()->back()->withInput($request->only('email', 'remember'));
+    }
+
+    public function logout(){
+        Auth::guard('empleado')->logout();
+        return redirect('/');   
     }
 }

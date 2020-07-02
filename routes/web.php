@@ -39,6 +39,7 @@ Route::get('productos/filtro/{nombre}', 'productoController@filtroCategoria')->n
 Route::resource('/productos', 'productoController');
 
 /*Rutas correspondientes a las rutas de los usuarios, su panel de control, etc*/ 
+Route::get('usuario/logout', 'Auth\LoginController@userLogout')->name('usuario.userLogout');
 Route::get('usuario/panel_de_control', 'usuarioController@panel')->name('usuario.panel_de_control');
 Route::post('usuario/tarjeta_agregada', 'usuarioController@tarjetaAgregar')->name('usuario.tarjeta_agregada');
 Route::resource('/usuario', 'usuarioController');
@@ -47,6 +48,7 @@ Route::resource('/usuario', 'usuarioController');
 Route::prefix('admin')->group(function() {
     Route::get('/login', 'Auth\JefeLoginController@showLoginForm')->name('jefe.login');
     Route::post('/login', 'Auth\JefeLoginController@login')->name('jefe.login.submit');
+    Route::get('/logout', 'Auth\JefeLoginController@logout')->name('jefe.logout');
     Route::get('/agregarP', 'adminController@agregarProducto')->name('jefe.agregarProducto');
     Route::post('/agregadoP', 'adminController@agregarProductoPost')->name('jefe.agregarProductoPost');
     Route::get('/modificar_stock', 'adminController@modificarStock')->name('jefe.modificarStock');
@@ -63,6 +65,7 @@ Route::prefix('admin')->group(function() {
 Route::prefix('empleado')->group(function() {
     Route::get('/login', 'Auth\EmpleadoLoginController@showLoginForm')->name('empleado.login');
     Route::post('/login', 'Auth\EmpleadoLoginController@login')->name('empleado.login.submit');
+    Route::get('/logout', 'Auth\EmpleadoLoginController@logout')->name('empleado.logout');
     Route::get('/modificar_stock', 'empleadoController@modificarStock')->name('empleado.modificarStock');
     Route::put('/modificar_stock_post', 'empleadoController@modificarStockPost')->name('empleado.modificarStockPost');
     Route::put('/quitar_producto_post', 'empleadoController@quitarProductoPost')->name('empleado.quitarProductoPost');

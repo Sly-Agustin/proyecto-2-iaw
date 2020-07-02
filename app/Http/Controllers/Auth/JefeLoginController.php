@@ -9,7 +9,7 @@ use Auth;
 class JefeLoginController extends Controller
 {
     public function __construct() {
-        $this->middleware('guest:jefe');
+        $this->middleware('guest:jefe', ['except' => ['logout']]);
     }
 
     public function showLoginForm(){
@@ -31,5 +31,10 @@ class JefeLoginController extends Controller
         
         // Si no volver al login
         return redirect()->back()->withInput($request->only('email', 'remember'));
+    }
+
+    public function logout(){
+        Auth::guard('jefe')->logout();
+        return redirect('/');   
     }
 }
