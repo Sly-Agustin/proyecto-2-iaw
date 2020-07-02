@@ -12,21 +12,6 @@
 <hr class="hrNoBorder">
 <div class="d-flex" id="wrapper">
 
-<!-- Sidebar -->
-<div class="bg-transparent border-right fontSize18 text-secondary" id="sidebar-wrapper">
-  <div class="sidebar-heading text-center font-weight-bold">Categorias </div>
-  <div class="list-group list-group-flush">
-        <a href="{{route('productos.filtroCategoria', 'procesador')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Procesadores</a>
-        <a href="{{route('productos.filtroCategoria', 'motherboard')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Motherboards</a>
-        <a href="{{route('productos.filtroCategoria', 'ram')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Memorias RAM</a>
-        <a href="{{route('productos.filtroCategoria', 'gabinete')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Gabinetes</a>
-        <a href="{{route('productos.filtroCategoria', 'placa de video')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Placas de video</a>
-        <a href="{{route('productos.filtroCategoria', 'refrigeracion')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Refrigeración</a>
-  </div>
-</div>
-<!-- /#sidebar-wrapper -->
-
-<!-- Page Content -->
 <div id="page-content-wrapper">
 
   
@@ -34,7 +19,7 @@
     
  
     <div class="container-fluid fontSize18">
-        <h1 class="text-center text-secondary">Lista completa de productos</h1>  
+        <h1 class="text-center text-secondary">Resultados de la búsqueda</h1>  
         <table class="table">
             <thead>
                 <tr>

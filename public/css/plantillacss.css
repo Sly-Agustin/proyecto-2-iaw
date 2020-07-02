@@ -17,6 +17,9 @@
     color: #e3f2fd;
     box-shadow: 0 0 2px #255784, 0 0 8px #255784;
 }
+.bgGray{
+    background-color: #B0B0B0 !important; 
+}
 
 .hrNoBorder{
     border-top: 1px;

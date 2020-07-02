@@ -34,3 +34,7 @@ li.page-item.disabled span.page-link{
     background-color: #353535;
     border: 1px solid #353535;
 }
+
+div nav ul{
+    justify-content: center;
+}

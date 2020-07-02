@@ -18,8 +18,7 @@ class productoController extends Controller
      */
     public function index()
     {
-        /*$productos=App\Producto::paginate(2);*/
-        $productos=App\Producto::where('estaEnVenta', true)->paginate(2);
+        $productos=App\Producto::where('estaEnVenta', true)->paginate(10);
         return view('productos', compact('productos'));
     }
 
@@ -101,6 +100,20 @@ class productoController extends Controller
         $datosTodasTarjetas = App\Tarjeta::all()->where('user_id', $userLogged);
         session(['producto' => $nombre]);
         return view('productos.comprar', compact('datos', 'datosTodasTarjetas'));
+    }
+
+
+    public function filtroCategoria($categoria){
+        $productos = App\Producto::where('tipo', $categoria)->where('estaEnVenta', true)->paginate(10);
+        return view('productos', compact('productos'));
+    }
+    public function filtroCategoriaPost(Request $request){
+        $productos = App\Producto::where('tipo', $request->busqueda)->paginate(10);
+        return view('productos', compact('productos'));
+    }
+    public function busquedaPost(Request $request){
+        $productos = App\Producto::where('nombre', 'LIKE', '%'.$request->busqueda.'%')->where('estaEnVenta', true)->paginate(10);
+        return view('productos.busqueda', compact('productos'));
     }
 
     public function compradoPost(BuyProductRequest $request, $idProducto){

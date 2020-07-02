@@ -1,5 +1,7 @@
 @extends('plantilla')
-
+@section('stylesheets')
+<link rel="stylesheet" href="{{ asset('css/productoscss.css') }}">
+@endsection
 @section('seccion')
 <div class="container">
 
@@ -21,9 +23,9 @@
         </div>
     @endif
 
-    <h1>Panel de usuario de {{ $usuario->username }}</h1>
-    <p>Agregar tarjeta de crédito</p>
-    <div class="text-center">
+    <h1 class="text-secondary">Panel de usuario de {{ $usuario->username }}</h1>
+    <p class="text-white">Agregar tarjeta de crédito</p>
+    <div class="text-center text-white">
         <form action="{{ route('usuario.tarjeta_agregada') }}" method="POST">
             @csrf
             <div class="form-row">
@@ -36,12 +38,12 @@
                     <input type="text" name="bancoNumero" class="form-control" id="inputBankNumber" placeholder="Ej: 8000 8000 8000 8000">
                 </div>
                 <div class="text-center">
-                    <button type="submit" id="crearCuentaButton" class="btn btn-primary marginButton btn-lg active">Agregar tarjeta</button>
+                    <button type="submit" id="crearCuentaButton" class="verdeNeonButtonNoGlow rounded marginButton btn-lg active">Agregar tarjeta</button>
                 </div>
             </div>
         </form>
     </div>
-    <div>
+    <div class="text-white">
         <h2>Tarjetas actuales</h2>
         @if ($usuarioTarjetas->isEmpty())
             <p>No hay tarjetas registradas actualmente</p>
@@ -50,7 +52,7 @@
             <p>{{$tarj->banco}} {{$tarj->numero}}</p>
         @endforeach
     </div>
-    <div>
+    <div class="text-white">
         <h2>Compras realizadas:</h2>
         @if ($usuarioCompras->isEmpty())
             <p>No tiene compras realizadas</p>

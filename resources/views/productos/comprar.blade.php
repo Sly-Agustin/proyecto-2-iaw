@@ -2,10 +2,12 @@
 
 @section('stylesheets')
 <link rel="stylesheet" href="{{ asset('css/botonescss.css') }}">
+<link rel="stylesheet" href="{{ asset('css/neoncss.css') }}">
+<link rel="stylesheet" href="{{ asset('css/productoscss.css') }}">
 @endsection
 
 @section('seccion')
-<div class="container">
+<div class="container fontSize20">
 
     <!--Errores de validación-->
     @if ($errors->any())
@@ -23,7 +25,20 @@
         </div>
     @endif
     
-    <div class="d-flex flex-row" id="wrapper">
+    <div class="d-flex flex-row text-white fontSize20">
+        <div class="container-fluid">
+            <p>Seleccione la tarjeta a utilizar para la compra</p>
+        </div>
+        <div class="container-fluid">
+            <select class="form-control form-control-sm">
+            @foreach ($datosTodasTarjetas as $tarjet)
+                <option>{{$tarjet->banco}}, {{$tarjet->numero}}</option>
+            @endforeach
+            </select>
+        </div>
+    </div>
+
+    <div class="d-flex flex-row text-white" id="wrapper">
         <div class="container-fluid">
             <p class="text-left">Seleccione la cantidad a comprar de {{$datos->nombre}}</p>
             
@@ -56,22 +71,15 @@
                 </div>
                 @if ($datosTodasTarjetas->isEmpty())
                 <div class="text-center"><p>No puede realizarse la compra si no tiene tarjetas asociadas a la cuenta</p></div>
-                @else 
+                @else
                 <div class="text-center">
-                    <button type="submit" id="comprarButton" class="btn btn-primary marginButton btn-lg active">Comprar</button>
+                    <button type="submit" id="comprarButton" class="verdeNeonButton rounded marginButton btn-lg active">Comprar</button>
                 </div>
                 @endif
             </div>
         </div>
     </div>
-    <div>
-        <p>Seleccione la tarjeta a utilizar para la compra</p>
-        <select class="form-control form-control-sm">
-        @foreach ($datosTodasTarjetas as $tarjet)
-            <option>{{$tarjet->banco}}, {{$tarjet->numero}}</option>
-        @endforeach
-        </select>
-    </div>
+
 </div>
 @endsection
 

@@ -32,6 +32,9 @@ Route::get('productos/{id}/comprar', 'productoController@comprar', function() {
     $value = session('key', 'default');
 })->name('productos.comprar')->middleware('auth');
 Route::post('productos/{id}/compradoPost', 'productoController@compradoPost')->name('productos.compradoPost');
+
+Route::post('productos/busquedaPost', 'productoController@busquedaPost')->name('productos.busquedaPost');
+Route::get('productos/filtro/{nombre}', 'productoController@filtroCategoria')->name('productos.filtroCategoria');
 Route::resource('/productos', 'productoController');
 
 /*Rutas correspondientes a las rutas de los usuarios, su panel de control, etc*/ 

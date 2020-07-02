@@ -1,7 +1,11 @@
 @extends('plantilla')
 
+@section('stylesheets')
+<link rel="stylesheet" href="{{ asset('css/productoscss.css') }}">
+@endsection
+
 @section('seccion')
-<div class="container">
+<div class="container text-white fontSize20">
 
     <!--Errores SQL-->
     @if (session('mensaje'))
@@ -70,7 +74,7 @@
                 </div>
             </div>    
             <div class="text-center">
-                <button type="submit" id="crearCuentaButton" class="btn btn-primary marginButton btn-lg active">Crear cuenta</button>
+                <button type="submit" id="crearCuentaButton" class="verdeNeonButtonNoGlow rounded marginButton btn-lg active">Crear cuenta</button>
             </div>
         </form>
     </div>

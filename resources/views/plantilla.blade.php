@@ -14,7 +14,7 @@
 
     
   </head>
-  <body class="bgImage">
+  <body class="bgImage text-uppercase">
     <!--<nav id="header" class="navbar navbar-expand-sm bgHeader p-2 hdFtBg shadow-sm">-->
     <nav id="header" class="navbar navbar-expand-sm bgHeader p-2 bgBlack shadow-sm">
         <a class="navbar-brand" href="{{ route('inicio') }}"> <img width="100" height="60" id="joystick" src="{{url('/images/hardware.png')}}" class="d-inline-block align-center" alt="hardstoreimg"></a>
@@ -29,16 +29,16 @@
                         <a class="dropdown-item" href="{{ route('productos.index') }}">Todos los productos</a>
                         {{-- <a class="dropdown-item" href="{{ route('productos.index') }}">Todos los productos</a> --}}
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item bgLightBlueLight" href="#">Procesadores</a>
+                        <a class="dropdown-item bgVerdeNeon" href="{{route('productos.filtroCategoria', 'procesador')}}">Procesadores</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">AMD</a>
                         <a class="dropdown-item" href="#">Intel</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Motherboards</a>
-                        <a class="dropdown-item" href="#">Memorias RAM</a>
-                        <a class="dropdown-item" href="#">Gabinetes</a>
+                        <a class="dropdown-item" href="{{route('productos.filtroCategoria', 'motherboard')}}">Motherboards</a>
+                        <a class="dropdown-item" href="{{route('productos.filtroCategoria', 'ram')}}">Memorias RAM</a>
+                        <a class="dropdown-item" href="{{route('productos.filtroCategoria', 'gabinete')}}">Gabinetes</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item bgLightBlueLight" href="#">Placas de video</a>
+                        <a class="dropdown-item bgVerdeNeon" href="{{route('productos.filtroCategoria', 'placa de video')}}">Placas de video</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Nvidia</a>
                         <a class="dropdown-item" href="#">Radeon</a>
@@ -48,8 +48,9 @@
                     <a class="nav-link" href="{{ route('qs') }}">¿Quiénes somos?</a>
                 </li>
                 <li>
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                    <form action="{{ route('productos.busquedaPost') }}" method="POST" class="form-inline">
+                        @csrf
+                        <input name="busqueda" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                     </form>
                 </li>
