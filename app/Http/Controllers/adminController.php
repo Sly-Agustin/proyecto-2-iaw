@@ -26,7 +26,6 @@ class adminController extends Controller
     {
         $this->middleware('auth:jefe');
     }
-
     /**
      * Show the application dashboard.
      *
@@ -43,16 +42,6 @@ class adminController extends Controller
 
     public function agregarProductoPost(CreateProductRequest $request){
         $validator = Validator::make($request->all(), $request->rules(), $request->messages());
-        //return dd($request->image);
-        //return dd($request->file('imagen'));
-        // Puesto para debuggear, borrar cuando se almacene la imagen
-        /*if ($request->hasFile('imagen')){
-            return $request->file('imagen');
-        }
-        else {
-            return 'awww :(';
-        }*/
-
         if ($validator->valid()){
             $nuevoProducto= new App\Producto;
             $nuevoProducto->nombre=$request->productoNombre;

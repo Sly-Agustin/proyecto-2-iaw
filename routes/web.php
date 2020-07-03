@@ -93,6 +93,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
 /*Rutas mail de prueba*/
 Route::get('send-mail', function () {
    

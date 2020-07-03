@@ -31,7 +31,7 @@ class CreateProductRequest extends FormRequest
             'productoUrl' => 'required',
             'productoPrecio' => ['required', 'integer', 'min:0'],
             'productoStock' => ['required', 'integer', 'min:0'],
-            'imagen' => ['file', 'image', 'max:5000'],
+            'imagen' => ['nullable','file', 'image', 'max:5000'],
         ];
     }
 

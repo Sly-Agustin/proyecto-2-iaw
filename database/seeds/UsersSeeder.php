@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use App\User;
 
 class UsersSeeder extends Seeder
@@ -22,6 +23,7 @@ class UsersSeeder extends Seeder
             $usuario->username = 'Usuario '.$i;
             $usuario->email = 'usuario'.$i.'@gmail.com';
             $usuario->password = Hash::make('contrasenia');
+            $usuario->api_token = Str::random(60);
             $usuario->save();
         }
     }

@@ -71,6 +71,14 @@ class Handler extends ExceptionHandler
                 }
                 return redirect()->route($login);
         }
+
+        // Para la API
+        if ($exception instanceof ModelNotFoundException && $request->wantsJson()) {
+            return response()->json([
+                'error' => 'Recurso para la API no encontrado'
+            ], 404);
+        }
+
         return parent::render($request, $exception);
     }
 }
