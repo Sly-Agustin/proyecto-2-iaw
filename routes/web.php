@@ -42,6 +42,7 @@ Route::resource('/productos', 'productoController');
 Route::get('usuario/logout', 'Auth\LoginController@userLogout')->name('usuario.userLogout');
 Route::get('usuario/panel_de_control', 'usuarioController@panel')->name('usuario.panel_de_control');
 Route::post('usuario/tarjeta_agregada', 'usuarioController@tarjetaAgregar')->name('usuario.tarjeta_agregada');
+Route::delete('usuario/tarjeta_quitada', 'usuarioController@tarjetaQuitar')->name('usuario.tarjeta_quitada');
 Route::resource('/usuario', 'usuarioController');
 
 /*Rutas jefe */

@@ -49,7 +49,14 @@
             <p>No hay tarjetas registradas actualmente</p>
         @endif
         @foreach ($usuarioTarjetas as $tarj)
-            <p>{{$tarj->banco}} {{$tarj->numero}}</p>
+        <form method="POST" action="{{ route('usuario.tarjeta_quitada') }}">
+            @method('DELETE')
+            @csrf
+            <div class="d-inline">{{$tarj->banco}} {{$tarj->numero}}</div>
+            <input type="hidden" name="tarjeta" value="{{$tarj->id}}" class="form-control" id="tarjeta">
+            <button type="submit" id="crearCuentaButton" class="ml-5 d-inline verdeNeonButtonNoGlow rounded marginButton btn-lg active">Borrar tarjeta</button>
+            <p></p>
+            </form>
         @endforeach
     </div>
     <div class="text-white">
