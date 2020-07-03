@@ -9,6 +9,8 @@ use App\Http\Requests\ModifyProductRequest;
 use App\Http\Requests\UpdateStockRequest;
 use App\Http\Requests\AddProductBackRequest;
 use App\Http\Requests\AddEmployeeRequest;
+use App\Http\Requests\RemoveEmployeeRequest;
+use App\Http\Requests\AltaEmployeeRequest;
 use Illuminate\Support\Facades\Hash;
 use App;
 use Validator;
@@ -145,8 +147,34 @@ class adminController extends Controller
             $nuevoEmpleado->email=$request->email;
             $nuevoEmpleado->password=Hash::make($request->contrasenia);
             $nuevoEmpleado->username=$request->usuario;
+            $nuevoEmpleado->enActividad=true;
             $nuevoEmpleado->save();   
         }
         return back()->with('mensaje', 'Empleado creado correctamente');
+    }
+
+    public function quitarEmpleado(){
+        $empleadosEnActividad=App\Empleado::all()->where('enActividad', true);
+        $empleadosNoEnActividad=App\Empleado::all()->where('enActividad', false);
+        return view('admin/quitarEmpleado', compact('empleadosEnActividad'), compact('empleadosNoEnActividad'));
+    }
+
+    public function quitarEmpleadoPost(RemoveEmployeeRequest $request){
+        // Validar
+        
+        $empleadoQuitar=App\Empleado::findOrFail($request->idEmpleado);
+        $empleadoQuitar->enActividad=false;
+        $empleadoQuitar->save();
+
+        return back()->with('mensaje', 'Empleado quitado correctamente');
+    }
+
+    public function habilitarEmpleadoPost(AltaEmployeeRequest $request) {
+        $empleadoHabilitar=App\Empleado::findOrFail($request->idEmpleado);
+        $empleadoHabilitar->enActividad=true;
+        $empleadoHabilitar->save();
+
+        return back()->with('mensaje', 'Empleado habilitado nuevamente');
+
     }
 }

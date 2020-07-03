@@ -20,6 +20,7 @@ class EmpleadosSeeder extends Seeder
         $empleado->apellido = 'Caldera';
         $empleado->username = 'JohnC';
         $empleado->email = 'johnc@gmail.com';
+        $empleado->enActividad = true;
         $empleado->password = Hash::make('empleado');
         $empleado->save();
     }

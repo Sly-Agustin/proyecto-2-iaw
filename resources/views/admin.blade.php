@@ -62,7 +62,7 @@
                 <div class="card-body">
                     <h3 class="card-title">Dar de alta/baja empleados</h3>
                     <p>Permite dar de baja una cuenta de empleado o volverla a habilitar.</p>
-                    <div class="col text-center"><a class="btn btn-primary" href="#" role="button">Borrar</a></div>
+                    <div class="col text-center"><a class="btn btn-primary" href="{{route('jefe.quitarEmpleado')}}" role="button">Borrar</a></div>
                 </div>
             </div>
         </div>

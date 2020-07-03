@@ -58,6 +58,14 @@ Route::prefix('admin')->group(function() {
     Route::put('/agregar_back_post', 'adminController@agregarProductoVentaPost')->name('jefe.agregarProductoVentaPost');
     Route::get('/agregar_empleado', 'adminController@agregarEmpleado')->name('jefe.agregarEmpleado');
     Route::post('/agregar_empleado', 'adminController@agregarEmpleadoPost')->name('jefe.agregarEmpleadoPost');
+    Route::get('/quitar_empleado', 'adminController@quitarEmpleado')->name('jefe.quitarEmpleado');
+    Route::put('/quitar_empleado_post', 'adminController@quitarEmpleadoPost')->name('jefe.quitarEmpleadoPost');
+    Route::put('/habilitar_empleado_post', 'adminController@habilitarEmpleadoPost')->name('jefe.habilitarEmpleadoPost');
+    /*Rutas mail jefe*/
+    Route::post('/password/email', 'Auth\JefeForgotPasswordController@sendResetLinkEmail')->name('jefe.password.email');
+    Route::get('/password/reset', 'Auth\JefeForgotPasswordController@showLinkRequestForm')->name('jefe.password.request');
+    Route::post('/password/reset', 'Auth\JefeResetPasswordController@reset');
+    Route::get('/password/reset/{token}', 'Auth\JefeResetPasswordController@showResetForm')->name('jefe.password.reset');
     Route::get('/', 'adminController@index')->name('jefe.dashboard');
 }); 
 
@@ -72,9 +80,27 @@ Route::prefix('empleado')->group(function() {
     Route::put('/agregar_back_post', 'empleadoController@agregarProductoVentaPost')->name('empleado.agregarProductoVentaPost');
     Route::get('/registrar_compra', 'empleadoController@registrarCompra')->name('empleado.registrarCompra');
     Route::put('/registrar_compra_post', 'empleadoController@registrarCompraPost')->name('empleado.registrarCompraPost');
+    /*Rutas mail empleado*/
+    Route::post('/password/email', 'Auth\EmpleadoForgotPasswordController@sendResetLinkEmail')->name('empleado.password.email');
+    Route::get('/password/reset', 'Auth\EmpleadoForgotPasswordController@showLinkRequestForm')->name('empleado.password.request');
+    Route::post('/password/reset', 'Auth\EmpleadoResetPasswordController@reset');
+    Route::get('/password/reset/{token}', 'Auth\EmpleadoResetPasswordController@showResetForm')->name('empleado.password.reset');
     Route::get('/', 'empleadoController@index')->name('empleado.dashboard');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/*Rutas mail de prueba*/
+Route::get('send-mail', function () {
+   
+    $details = [
+        'title' => 'Mail from ItSolutionStuff.com',
+        'body' => 'This is for testing email using smtp'
+    ];
+   
+    \Mail::to('agustin_sly@hotmail.com')->send(new \App\Mail\MyTestMail($details));
+   
+    dd("Email is Sent.");
+});

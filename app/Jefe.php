@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\JefeResetPasswordNotification;
 
 class Jefe extends Authenticatable
 {
@@ -39,5 +40,9 @@ class Jefe extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sendPasswordResetNotification($token){
+        $this->notify(new JefeResetPasswordNotification($token));
+    }
 }
 

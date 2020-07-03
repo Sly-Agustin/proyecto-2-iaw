@@ -20,6 +20,7 @@ class CreateEmpleadosTable extends Migration
             $table->string('apellido');
             $table->string('username')->unique();
             $table->string('password');
+            $table->boolean('enActividad');
             $table->rememberToken();      /* Ver si funciona con esto, borrar caso contrario */
         });
     }
