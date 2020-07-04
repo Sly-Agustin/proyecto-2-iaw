@@ -12,3 +12,8 @@
     padding-bottom: 15px;
     padding-top: 15px;
 }
+
+.text-border{
+    border-radius: 0.5rem;
+    text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black, 1px 1px black, -1px -1px black, -1px 1px black, 1px -1px black;
+}

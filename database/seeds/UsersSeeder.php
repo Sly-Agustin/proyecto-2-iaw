@@ -27,5 +27,8 @@ class UsersSeeder extends Seeder
             $usuario->api_token = bin2hex(openssl_random_pseudo_bytes(30));
             $usuario->save();
         }
+
+        factory(User::class, 10)->create();
+
     }
 }

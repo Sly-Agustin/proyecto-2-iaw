@@ -38,10 +38,10 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">#id</th>
-                    <th scope="col">Tipo</th>
                     <th scope="col">Nombre</th>
+                    <th scope="col">Tipo</th>       
                     <th scope="col">Descripcion</th>
+                    <th scope="col">Precio</th>
                     <th scope="col">Especificaciones</th>
                     <th scope="col">URL del fabricante</th>
                     <th scope="col">Stock disponible</th>
@@ -55,10 +55,10 @@
             <tbody>
                 @foreach($productos as $item)           
                 <tr>
-                <th scope="row">{{$item->id_producto}}</th>
+                <th scope="row">{{$item->nombre}}</th>
                 <td>{{$item->tipo}}</td>
-                <td>{{$item->nombre}}</td>
                 <td>{{$item->descripcion}}</td>
+                <td>${{$item->precio}}</td>
                 <td>
                     <a href="{{route('productos.detallado', $item->id_producto)}}">
                         {{$item->nombre}}

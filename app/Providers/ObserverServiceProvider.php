@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\User;
-use App\Jefe;
+use App\Jefe    ;
 use App\Observers\UserObserver;
 use App\Observers\JefeObserver;
 use Illuminate\Support\ServiceProvider;

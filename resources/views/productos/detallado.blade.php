@@ -17,6 +17,7 @@
     <p>Descripción: {{$datos->descripcion}}</p>
     <p>{{$datos->descripcionLarga}}</p>
     <p>Precio: ${{$datos->precio}}</p>
+    <p>Stock: {{$datos->stock}}</p>
     <a class="verdeNeonButton rounded" href="{{route('productos.comprar', $datos)}}" role="button">Comprar</a>
 </div>
 @endsection
