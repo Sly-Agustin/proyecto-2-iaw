@@ -25,8 +25,24 @@ Tenemos otras tablas que también guardan información en la base de datos:
 - Compra: Guarda información respecto a las compras realizadas a través de la página, como quién la hizo, qué producto compró, que cantidad y cuando.
 - Cambio de stock: Cambio de stock con respecto a un producto, quién lo realizó (usuario, empleado, jefe) y con que motivo (compra, stock, etc). Si bien tiene 3 campos id nullable correspondientes a los usuarios, empleados o jefe solo uno de ellos se llenará y registrará la razón del cambio.
 
+## Sobre los seeders de los productos
+Son seeders creados a manos porque me pareció que quedaba fea la página con datos del estilo procesador thermaltake A4 marca sentey que vale 1000 pesos y redirige a una página de corsair, asique todos los productos fueron escritos a mano.
+
+
+## Jefes y empleados
 Los empleados y jefes deben pueden loguearse desde una URL específica, en el caso de los empleados es dominio/empleados/login (o sin login y será redirigido) y los jefes dominio/admin/login (idem empleado login).
 Todos los tipos de usuario pueden recuperar su contraseña en caso de olvidarla, solo es necesario hacer click en "¿Olvido su contraseña?" en la pantalla de login que le corresponda, escribir su mail y si el mail existe en la base de datos recibirá un link para reiniciar la contraseña.
+CUENTA JEFE =
+- mail: jefecito@jefe.com
+- contraseña: jefe
+NOTA: no hay manera de crear otro jefe que no sea con seeders o directamente de la base de datos, asi que no se puede probar el reiniciar contraseña, personalmente lo probé con mailtrap cambiando las variables de configuración y capturé todo en mi cuenta de mailtrap demostrando que andaba bien. Sin embargo si querés probarlo con la tuya avisame y te agrego a la bd.
+
+CUENTA EMPLEADO =
+- mail: johnc@gmail.com
+- contraseña: empleado
+
+Para las cuentas usuario podés crearte una (no es necesaria la verificación) y hay usuarios por defecto creadas manuales y con factory (y faker, hice ambas para probar). Si no querés crear una cuenta una por defecto es usuario1@gmail.com y contraseña: contrasenia
+
 
 ## Agregar producto
 Solo los jefes pueden agregar productos, las condiciones de los campos se encuentran en la pestaña para agregar.
@@ -48,3 +64,14 @@ Una vez completado el empleado ya podrá loguearse desde el login de empleados.
 
 ## Dar de alta/baja empleados
 Nos permite dar de alta/baja los empleados para que ya no puedan ingresar al sistema ni realizar modificaciones. No son borrados de la base de datos ya que su ID se utiliza como clave foránea en los cambios de stock, habría que analizar si es necesario o directamente sacarla como clave foránea y ponerla como atributo nullable. Otra cosa a destacar es que esta idea se me ocurrió a último momento y no llegué a implementarla del todo asique lo único que hace es setear al empleado como inactivo pero aún así puede loguearse y realizar cambios (sí, la feature más útil del mundo cuando renuncia alguien).
+
+## Como probar la API con postman
+La API es extremadamente básica, podemos hacer lo siguiente:
+- Obtener los datos de un producto
+- Obtener los datos de todos los productos
+- Agregar un producto
+
+Las primeras dos son de acceso público, me pareció adecuado que cualquiera pudiera consultar esto. La última necesita permisos de jefe para realizarse, para esto ponemos el api-token y su valor como parámetro de Query en la parte de autorización, esto ya se encuentra agregado en el JSON que se encuentra en el home del repositorio. Para probar la API usar el json.
+
+## Link al video de youtube
+https://www.youtube.com/watch?v=ax_fJFxC0bw

@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "3d823d03-fa4b-407a-afbe-32b38a80a9d1",
+		"name": "Proyecto-2-iaw-heroku",
+		"description": "Consultas y cambios en heroku",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "productoEnParticular",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://proyecto-2-iaw-sly.herokuapp.com/api/productos/1",
+					"protocol": "https",
+					"host": [
+						"proyecto-2-iaw-sly",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"productos",
+						"1"
+					]
+				},
+				"description": "Consultamos por un producto en particular"
+			},
+			"response": []
+		},
+		{
+			"name": "todosLosProductos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://proyecto-2-iaw-sly.herokuapp.com/api/productos/",
+					"protocol": "https",
+					"host": [
+						"proyecto-2-iaw-sly",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"productos",
+						""
+					]
+				},
+				"description": "Consultamos por todos los productos de la lista"
+			},
+			"response": []
+		},
+		{
+			"name": "agregarProductoNuevo",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "1a6090ec2d4b9d2ce21dab3b58d127ca6499cd6b8f67737c9a0dcba99d6b\n",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "api_token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productoNombre\": \"AMD Ryzen 7 3400G\",\r\n    \"productoDescripcion\": \"Procesador AMD Ryzen 5 de 3ra generacion\",\r\n    \"productoDescripcionLarga\": \"3,4 GHz, sin placa de video integrada\",\r\n    \"productoTipo\": \"procesador\",\r\n    \"productoUrl\": \"https://www.amd.com/es/products/apu/amd-ryzen-5-3400g\" ,\r\n    \"productoPrecio\": 14000,\r\n    \"estaEnVenta\": true,\r\n    \"productoStock\":100,\r\n    \"imagen\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://proyecto-2-iaw-sly.herokuapp.com/api/productos/agregar",
+					"protocol": "https",
+					"host": [
+						"proyecto-2-iaw-sly",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"productos",
+						"agregar"
+					]
+				},
+				"description": "Agregamos un producto a la base de datos, podemos modificar los atributos si queremos un nuevo producto"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
