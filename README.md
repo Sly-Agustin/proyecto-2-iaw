@@ -1,80 +1,50 @@
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Proyecto 2
 
-## About Laravel
+Mi idea es realizar una página web de venta de hardware para computadoras. Entre el hardware podemos encontrar procesadores, placas madre y otras partes además de periféricos como teclados, mouses, auriculares, etc. 
 
+Para esto se utilizará:
+- Laravel, un framework de trabajo para desarrollar con PHP
+- Bootstrap para CSS
+- Javascript
+- PostgreSQL para la base de datos
+- Heroku para el deploy
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Las entidades se pueden observar en el siguiente diagrama:
+<p align="center"><img src="https://github.com/Sly-Agustin/proyecto-2-iaw/blob/master/iaw.png?raw=true" width="1000"></p>
+NOTA: El diagrama está sujeto a cambios, puede que me haya olvidado de algo o que sea conveniente agregar/quitar cosas a futuro, como por ejemplo el método de pago que aún no terminé de definir. Si el diagrama no se vé está en el branch master como un archivo "iaw.png".
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Las personas que interactúan con la aplicación son:
+- Usuarios: Son los clientes de la página web, pueden realizar compras a la página. Poseen un nombre de usuario y una contraseña. Entre las interaccioens posibles que tienen con la base de datos se encuentran descontar la cantidad del producto que hayan comprado del stock actual y crear o borrar tarjetas de crédito que son las que utilizan para comprar. Se tienen ciertos datos de la persona como el nombre, apellido, domicilio, etc, más que nada para hacer el envío de productos y facturación correspondiente.
+- Empleados: Pueden modificar el stock de cualquier producto, ya sea por algún inconveniente (robo, falla, contó de manera errónea) o por ventas en el local físico. También puede dar de baja/alta un producto para que no aparezca a la venta en la página, como por ejemplo en el caso de quedarse sin stock, producto descontinuado, etc. Cada modificación de stock queda registrado en una entrada en la base de datos en la cuál el empleado debe informar la razón del cambio (como las antes mencionadas).
+- Jefe: Puede modificar el stock, agregar o quitar productos de la base de datos, dar de alta o baja los mismos, agregar empleados, darlos de alta/baja para realizar operaciones.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Tenemos otras tablas que también guardan información en la base de datos:
+- Producto: Guarda la información relacionada a un producto como su nombre, descripción, foto, etc. Las fotos son guardadas en una columna LongText en base64 dentro de la base de datos. Los productos NUNCA se borran de la base de datos, solo se les puede sacar de la venta, esto se hace porque las compras tienen como clave foránea a las claves primarias de estos productos además de que se puede seguir accediendo a la información de la misma sin opción de compra. 
+- Compra: Guarda información respecto a las compras realizadas a través de la página, como quién la hizo, qué producto compró, que cantidad y cuando.
+- Cambio de stock: Cambio de stock con respecto a un producto, quién lo realizó (usuario, empleado, jefe) y con que motivo (compra, stock, etc). Si bien tiene 3 campos id nullable correspondientes a los usuarios, empleados o jefe solo uno de ellos se llenará y registrará la razón del cambio.
 
-## Learning Laravel
+Los empleados y jefes deben pueden loguearse desde una URL específica, en el caso de los empleados es dominio/empleados/login (o sin login y será redirigido) y los jefes dominio/admin/login (idem empleado login).
+Todos los tipos de usuario pueden recuperar su contraseña en caso de olvidarla, solo es necesario hacer click en "¿Olvido su contraseña?" en la pantalla de login que le corresponda, escribir su mail y si el mail existe en la base de datos recibirá un link para reiniciar la contraseña.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Agregar producto
+Solo los jefes pueden agregar productos, las condiciones de los campos se encuentran en la pestaña para agregar.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Modificar producto
+Puede ser realizada tanto por jefes o empleados. Consiste en la modificación de las propiedades de los productos como el stock, quitar o volver a poner un producto a la venta.
+En el caso de cambiar el stock es necesario agregar la nueva cantidad total disponible, el controlador se encargará de hacer los cálculos y ver si se agregó o decrementó el stock. Quizás hubiera sido más intuitivo aceptar valores relativos al stock y no un stock absoluto, es decir aceptar +1/-1 y calcular en nuevo stock en base a eso pero llegó la entrega y nunca se me había ocurrido. Además es necesario especificar la razón del cambio de stock.
+Para quitar un producto de la venta es necesario seleccionarlo y pulsar el botón quitar.
+Para agregar un producto a la venta es necesario seleccionarlo y pulsar el botón Agregar de nuevo.
 
-## Laravel Sponsors
+## Agregar empleados
+Solo los jefes pueden agregar empleados. Las condiciones de los campos son las siguientes:
+- Nombre de usuario: Único, necesario.
+- Password: Necesaria, puede ser de cualquier longitud o combinación.
+- Email: Único, necesario y debe ser una dirección de mail válida.
+- Nombre: Necesario, puede ser cualquier combinación de caracteres.
+- Apellido: Necesario, puede ser cualquier combinación de caracteres.
+Una vez completado el empleado ya podrá loguearse desde el login de empleados.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Dar de alta/baja empleados
+Nos permite dar de alta/baja los empleados para que ya no puedan ingresar al sistema ni realizar modificaciones. No son borrados de la base de datos ya que su ID se utiliza como clave foránea en los cambios de stock, habría que analizar si es necesario o directamente sacarla como clave foránea y ponerla como atributo nullable. Otra cosa a destacar es que esta idea se me ocurrió a último momento y no llegué a implementarla del todo asique lo único que hace es setear al empleado como inactivo pero aún así puede loguearse y realizar cambios (sí, la feature más útil del mundo cuando renuncia alguien).
