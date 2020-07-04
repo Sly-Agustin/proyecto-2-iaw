@@ -19,7 +19,7 @@ class ApiProductosController extends Controller
      */
     public function index()
     {
-        return App\Producto::All();
+        return response(App\Producto::All(), 200);
     }
 
     /**

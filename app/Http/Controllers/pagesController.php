@@ -42,7 +42,8 @@ class pagesController extends Controller
                 $nuevoUsuario->nombre = $request->nombre;
                 $nuevoUsuario->email = $request->email;
                 $nuevoUsuario->apellido = $request->apellido;
-                $nuevoUsuario->generateToken();
+                //$nuevoUsuario->generateToken();
+                //$nuevoUsuario->api_token= bin2hex(openssl_random_pseudo_bytes(30));
     
                 $nuevaDireccion=new App\Domicilio;
                 $nuevaDireccion->direccion = $request->direccion;
