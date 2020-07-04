@@ -21,6 +21,7 @@ class JefesSeeder extends Seeder
         $jefe->username = 'JaviM';
         $jefe->email = 'jefecito@jefe.com';
         $jefe->password = Hash::make('jefe');
+        $jefe->api_token = bin2hex(openssl_random_pseudo_bytes(30));
         $jefe->save();
         
     }

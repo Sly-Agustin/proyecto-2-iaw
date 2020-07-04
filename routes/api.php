@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/productos', 'ApiProductosController@index')->name('api.productos.todos')->middleware('auth:api');
+Route::get('/productos', 'ApiProductosController@index')->name('api.productos.todos');
 Route::get('/productos/{id}', 'ApiProductosController@show')->name('api.productos.id');
 
 // Borrar si no andan
@@ -27,7 +27,7 @@ Route::get('/productos/{id}', 'ApiProductosController@show')->name('api.producto
 
 
 Route::get('/productos/{id}', 'ApiProductosController@show')->name('api.productos.id');
-Route::post('/productos/agregar', 'ApiProductosController@storeCustom')->name('api.productos.agregar')->middleware('auth:api');
+Route::post('/productos/agregar', 'ApiProductosController@storeCustom')->name('api.productos.agregar')->middleware('auth:jefe-api');
 Route::resource('productos', 'ApiProductosController');
 
 

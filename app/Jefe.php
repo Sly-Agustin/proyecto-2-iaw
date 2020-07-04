@@ -44,5 +44,13 @@ class Jefe extends Authenticatable
     public function sendPasswordResetNotification($token){
         $this->notify(new JefeResetPasswordNotification($token));
     }
+
+    public function generateToken()
+    {
+        $this->api_token = Str::random(60);
+        $this->save();
+
+        return $this->api_token;
+    }
 }
 

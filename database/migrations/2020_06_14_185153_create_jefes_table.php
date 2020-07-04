@@ -21,6 +21,7 @@ class CreateJefesTable extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->rememberToken();      /* Ver si funciona con esto, borrar caso contrario */
+            $table->string('api_token', 60)->unique();
         });
     }
 
