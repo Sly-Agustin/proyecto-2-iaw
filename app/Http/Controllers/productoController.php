@@ -129,6 +129,9 @@ class productoController extends Controller
                 "nombre" => $datos->nombre,
                 "numero" => $request->cantidadCompra,
             ];
+            if ($datos->estaEnVenta==false){
+                return back()->with('mensajeErrorStock','El producto ya no se encuentra a la venta');
+            }
             // Esto no se hace en el validador porque podría recibir datos de stock antiguos si se basa en el valor que viene del HTML y generar compras sin stock disponible.
             if ($datos->stock<$request->cantidadCompra) {
                 return back()->with('mensajeErrorStock','No hay stock suficiente para la compra');
